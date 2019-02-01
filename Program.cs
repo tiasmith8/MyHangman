@@ -7,8 +7,8 @@ namespace MyHangman
     {
         static void Main(string[] args)
         {
-            Console.ForegroundColor = ConsoleColor.DarkBlue;
-            Console.WriteLine("Welcome to Hangman!");
+            //Console.ForegroundColor = ConsoleColor.DarkBlue;
+            Console.WriteLine("Welcome to Hangman!\n");
             Console.Write("Would you like to play a round? (y/n) ");
             string playGame = Console.ReadLine();
             int numberOfRoundsPlayed = 0;
@@ -44,7 +44,6 @@ namespace MyHangman
                         gameBoard.PrintOutBoard();
 
                         break;
-
                     }
 
                 }

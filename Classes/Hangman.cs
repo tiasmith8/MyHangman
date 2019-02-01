@@ -31,11 +31,11 @@ namespace MyHangman.Classes
         /// </summary>
         public string[] SixLetterDictionarWords { get; private set; } = new string[]
         {
-                "abrupt", "action", "bailey", "belted", "blazes", "sweaty",
-                "cavern", "coiled", "facing", "fluent", "waited",
-                "gifted", "hoards", "making", "motive", "uprise",
-                "pencil", "pounds", "radius", "wander", "tribal",
-                "thorny", "towels", "trucks", "washer", "thanks"
+                "abrupt", "action", "bailey", "belted", "blazes", "sweaty", "plenty", "mascot",
+                "cavern", "coiled", "facing", "fluent", "waited", "surfed", "pirate", "laughs",
+                "gifted", "hoards", "making", "motive", "uprise", "sundae", "notify", "hosted",
+                "pencil", "pounds", "radius", "wander", "tribal", "soared", "notice", "gloves",
+                "thorny", "towels", "trucks", "washer", "thanks", "plural", "nature", "filter"
         };
 
         /// <summary>
@@ -55,8 +55,8 @@ namespace MyHangman.Classes
         /// </summary>
         public void PrintIncorrectLetters()
         {
-            Console.ForegroundColor = ConsoleColor.DarkYellow;
-            Console.Write("Incorrect letters guessed so far: ");
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.Write("Incorrect letters guessed: ");
             Console.ForegroundColor = ConsoleColor.White;
             foreach (char wrongChars in incorrectLetters)
             {
@@ -74,7 +74,7 @@ namespace MyHangman.Classes
         public void PrintOutBoard()
         {
             Console.Clear();
-            Console.WriteLine();
+            //Console.WriteLine();
             PrintLogoLarge();
             foreach (string gameBoardString in GameBoard)
             {
@@ -123,6 +123,7 @@ namespace MyHangman.Classes
                 Console.WriteLine("Correct!");
                 Console.ForegroundColor = ConsoleColor.DarkYellow;
                 Console.WriteLine($"Remaining incorrect guesses: {RemainingAttempts}");
+                PrintIncorrectLetters();
                 Console.ResetColor();
 
                 string strGuessed = new string(this.guessedCharacters);
@@ -132,7 +133,7 @@ namespace MyHangman.Classes
                 if (strGuessed.Equals(strPicked))
                 {
                     this.RemainingAttempts = 0;
-                    Console.WriteLine("\nYou WIN!!\n");
+                    Console.WriteLine("\nYou WIN!!");
                 }
             }
 
@@ -185,7 +186,9 @@ namespace MyHangman.Classes
             }
             PrintOutBoard();
             Console.ForegroundColor = ConsoleColor.DarkRed;
-            Console.WriteLine($"That guess what incorrect. Remaining incorrect guesses: {RemainingAttempts}");
+            Console.WriteLine($"That guess what incorrect. ");
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            Console.WriteLine($"Remaining incorrect guesses: {RemainingAttempts}");
             //Print incorrect letters
             PrintIncorrectLetters();
 
@@ -194,12 +197,12 @@ namespace MyHangman.Classes
             //If all guesses are used, print you lose
             if (this.RemainingAttempts == 0)
             {
-                Console.WriteLine("YOU LOSE");
+                Console.WriteLine("**YOU LOSE**");
             }
             else if(this.RemainingAttempts == 1)
             {
                 Console.ForegroundColor = ConsoleColor.DarkYellow;
-                Console.Write("Would you like a hint? (y/n)");
+                Console.Write("Would you like a hint? (y/n) ");
                 Console.ResetColor();
                 if (char.Parse(Console.ReadLine().ToLower()).Equals('y'))
                 {
