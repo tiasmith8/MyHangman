@@ -330,11 +330,6 @@ namespace MyHangman.Classes
                             //Add the word to the list holding words
                             sixLetterWordsFromFile.Add(word);
                         }
-
-                        if (line.Equals(""))
-                        {
-                            break;
-                        }
                     }
                 }   
             }
