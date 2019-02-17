@@ -61,3 +61,16 @@ namespace MyHangman
         }
     }
 }
+
+
+//TODO
+/*
+ * Add logic for easy (4 letter words), medium(5 letter words), hard (6 letter words) - put into classes
+ * Add unit tests
+ * Change guess logic to print a letter and not the entire word
+ * Refactor code - menu, game boards for easy/medium/hard
+ * Add logic for putting the wrong letter twice
+ * Add logic for putting the correct letter twice: You already chose that letter
+ * Catch null exceptions for bad letters entered
+ * Make you win and you lose ascii signature
+ */
