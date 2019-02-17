@@ -262,7 +262,8 @@ namespace MyHangman.Classes
             if (this.RemainingAttempts == 0)
             {
                 Console.WriteLine("**YOU LOSE**");
-                //Print the word to the board so user knows what word they didnt guess
+                //Tells user the correct word as the end of round.
+                Console.WriteLine($"The correct word was: {this.PickedWord}");
 
             }
             else if(this.RemainingAttempts == 1)
@@ -273,6 +274,7 @@ namespace MyHangman.Classes
                 if (char.Parse(Console.ReadLine().ToLower()).Equals('y'))
                 {
                     //**Change this to print an unguessed letter instead of the entire word
+                    //This will print the entire word:
                     Console.WriteLine($"Word to guess: {this.PickedWord}");
                 }
             }
