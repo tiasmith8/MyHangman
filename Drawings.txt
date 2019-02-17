@@ -43,3 +43,24 @@ Add logic for putting in the same wrong letter twice:
 Check the list for Contains and spit out error, or create a hashset that only takes unique values
 Add logic for multiple letters in a word to guess
 catch null exception entered
+Refactor the code (rename variables, elimate duplicate code)
+
+Fill in both characters if it's the same
+Tell the word at the end if you don't get it
+Make the clue more obvious that it's the clue
+
+Could create a dictionary with "one", "two", "three" with 
+Dictionary(<int, string[] array)
+
+Make you win and you lose ascii signature 
+
+
+
+
+
+
+
+Custom colors
+Tools => NuGet Package Manager => Package Manager Console menu
+PM> Install-Package Colorful.Console -Version 1.2.9
+http://colorfulconsole.com/

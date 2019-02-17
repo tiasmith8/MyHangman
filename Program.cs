@@ -34,7 +34,7 @@ namespace MyHangman
                     Console.ResetColor();
                     string letterGuessed = Console.ReadLine();
 
-                    //Check if character is the picked word
+                    //Check if character is in the picked word
                     //pass in string with guessed character
                     gameBoard.ContainsLetter(letterGuessed);
 
@@ -47,19 +47,17 @@ namespace MyHangman
                     }
 
                 }
-                Console.Write("\nWould you like to play again?");
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.Write("\nWould you like to play again? (y/n) ");
                 playGame = Console.ReadLine();
 
                 //Increment RoundCounter
                 gameBoard.PlayAnotherRound();
 
             }
-
-
-
-
-
-
+            Console.ForegroundColor = ConsoleColor.DarkGreen;
+            Console.WriteLine("Thank you for playing.\n");
+            Console.ResetColor();
         }
     }
 }

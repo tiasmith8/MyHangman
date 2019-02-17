@@ -5,7 +5,7 @@ using System.Text;
 namespace MyHangman.Classes
 {
     /// <summary>
-    /// Prints the game board
+    /// Hangman game
     /// </summary>
     public class Hangman
     {
@@ -29,7 +29,7 @@ namespace MyHangman.Classes
         /// <summary>
         /// Contains the dictionary of words to guess.
         /// </summary>
-        public string[] SixLetterDictionarWords { get; private set; } = new string[]
+        public string[] SixLetterDictionaryWords { get; private set; } = new string[]
         {
                 "abrupt", "action", "bailey", "belted", "blazes", "sweaty", "plenty", "mascot",
                 "cavern", "coiled", "facing", "fluent", "waited", "surfed", "pirate", "laughs",
@@ -82,15 +82,22 @@ namespace MyHangman.Classes
             }
         }
 
+        /// <summary>
+        /// Checks if guessed letter is in the word
+        /// </summary>
+        /// <param name="letterGuessed"></param>
+        /// <returns></returns>
         public bool ContainsLetter(string letterGuessed)
         {
-            bool doesContainLetter = false;
+            bool doesContainLetter = false; //assume false first
+            //returns -1 if index not there, otherwise returns the first index of the letter
             int indexAtGuess = pickedWord.IndexOf(letterGuessed);
 
+            //If the letter was found in the word to guess
             if (indexAtGuess != -1)
-            {
+            {   //Change the * to the letter guess correctly
                 this.guessedCharacters[indexAtGuess] = char.Parse(letterGuessed);
-                doesContainLetter = !doesContainLetter;
+                doesContainLetter = !doesContainLetter; //Flag for letter found updated to true
             }
 
             //Change the value of guess spaces to what was guessed correctly
@@ -117,6 +124,11 @@ namespace MyHangman.Classes
                         this.GameBoard[8] = this.GameBoard[8].Substring(0, 26) + " " + letterGuessed + this.GameBoard[8].Substring(28);
                         break;
                 }
+
+                //**Add logic here to check if the letter is there again
+                //Here check to see if the letter exists another time
+                CheckForAnotherLetter(letterGuessed, indexAtGuess);
+
                 //Print the board
                 PrintOutBoard();
                 Console.ForegroundColor = ConsoleColor.DarkGreen;
@@ -145,7 +157,6 @@ namespace MyHangman.Classes
              * If index 5   spaces 27, 28
             */
 
-            
 
             //Did not guess correctly
             else
@@ -158,6 +169,50 @@ namespace MyHangman.Classes
 
             return doesContainLetter;
         }
+
+        public void CheckForAnotherLetter(string letterGuessed, int firstIndex)
+        {
+            bool doesContainLetter = false; //assume false first
+            //returns -1 if index not there, otherwise returns the first index of the letter
+            int indexAtGuess = pickedWord.IndexOf(letterGuessed, ++firstIndex);
+
+            //If the letter was found in the word to guess
+            if (indexAtGuess != -1)
+            {   //Change the * to the letter guess correctly
+                this.guessedCharacters[indexAtGuess] = char.Parse(letterGuessed);
+                doesContainLetter = !doesContainLetter; //Flag for letter found updated to true
+            }
+
+            //Change the value of guess spaces to what was guessed correctly
+            if (doesContainLetter)
+            {
+                switch (indexAtGuess)
+                {
+                    case 0:
+                        this.GameBoard[8] = this.GameBoard[8].Substring(0, 11) + " " + letterGuessed + this.GameBoard[8].Substring(13);
+                        break;
+                    case 1:
+                        this.GameBoard[8] = this.GameBoard[8].Substring(0, 14) + " " + letterGuessed + this.GameBoard[8].Substring(16);
+                        break;
+                    case 2:
+                        this.GameBoard[8] = this.GameBoard[8].Substring(0, 17) + " " + letterGuessed + this.GameBoard[8].Substring(19);
+                        break;
+                    case 3:
+                        this.GameBoard[8] = this.GameBoard[8].Substring(0, 20) + " " + letterGuessed + this.GameBoard[8].Substring(22);
+                        break;
+                    case 4:
+                        this.GameBoard[8] = this.GameBoard[8].Substring(0, 23) + " " + letterGuessed + this.GameBoard[8].Substring(25);
+                        break;
+                    case 5:
+                        this.GameBoard[8] = this.GameBoard[8].Substring(0, 26) + " " + letterGuessed + this.GameBoard[8].Substring(28);
+                        break;
+                }
+                //Call again to check for another letter
+                CheckForAnotherLetter(letterGuessed, indexAtGuess);
+            }
+
+        }
+
 
         //Add missed guess to board
         public void IncorrectGuess()
@@ -185,8 +240,8 @@ namespace MyHangman.Classes
                     break;
             }
             PrintOutBoard();
-            Console.ForegroundColor = ConsoleColor.DarkRed;
-            Console.WriteLine($"That guess what incorrect. ");
+            Console.ForegroundColor = ConsoleColor.DarkGray;
+            Console.WriteLine($"That guess was incorrect. ");
             Console.ForegroundColor = ConsoleColor.DarkYellow;
             Console.WriteLine($"Remaining incorrect guesses: {RemainingAttempts}");
             //Print incorrect letters
@@ -198,10 +253,12 @@ namespace MyHangman.Classes
             if (this.RemainingAttempts == 0)
             {
                 Console.WriteLine("**YOU LOSE**");
+                //Print the word to the board so user knows what word they didnt guess
+
             }
             else if(this.RemainingAttempts == 1)
             {
-                Console.ForegroundColor = ConsoleColor.DarkYellow;
+                Console.ForegroundColor = ConsoleColor.DarkGreen;
                 Console.Write("Would you like a hint? (y/n) ");
                 Console.ResetColor();
                 if (char.Parse(Console.ReadLine().ToLower()).Equals('y'))
@@ -219,14 +276,13 @@ namespace MyHangman.Classes
             this.NumberOfRounds++;
         }
 
-
         //Constructor - print blank game board
         public Hangman(int roundNumber)
         {
-            //Initializes to round 1
+            //Initializes to round 1 initially 
             this.NumberOfRounds = roundNumber;
 
-            //Initialize number if tries to 6
+            //Initialize number of tries to 6
             this.RemainingAttempts = 6;
 
             //Create the empty game board
@@ -246,8 +302,8 @@ namespace MyHangman.Classes
 
             //Get the word to guess
             Random rndNumber = new Random();
-            int randomSeedValue = rndNumber.Next(0, SixLetterDictionarWords.Length - 1);
-            this.pickedWord = SixLetterDictionarWords[randomSeedValue];
+            int randomSeedValue = rndNumber.Next(0, SixLetterDictionaryWords.Length - 1);
+            this.pickedWord = SixLetterDictionaryWords[randomSeedValue];
 
         }
 
@@ -274,9 +330,5 @@ namespace MyHangman.Classes
             Console.WriteLine();
             Console.ResetColor();
         }
-
-
-
-
     }
 }
