@@ -276,9 +276,36 @@ namespace MyHangman.Classes
                     //**Change this to print an unguessed letter instead of the entire word
                     //This will print the entire word:
                     Console.WriteLine($"Word to guess: {this.PickedWord}");
+
+                    //Look in this.GuessedCharacters for the 1st occurrence of *
+                    int clueIndex = FindIndexForClue();
+                    //Get that index and pull from PickedWord[1st index]
+                    char clueLetter = PickedWord[clueIndex];
+                    //Send the new letter through process to populate the field in the board
+                    //Call the board on that letter to print to the board
+                    ContainsLetter(clueLetter.ToString());
                 }
             }
         }
+
+        /// <summary>
+        /// Find index of unguessed character to use as clue to user.
+        /// </summary>
+        /// <returns></returns>
+        public int FindIndexForClue()
+        {
+            int clueIndex;
+            for(int i = 0; i<GuessedCharacters.Length-1; i++)
+            {
+                if(GuessedCharacters[i].Equals('*'))
+                {
+                    clueIndex = i;
+                    return clueIndex;
+                }
+            }
+            return -1;
+        }
+
 
         /// <summary>
         /// Play another round.
