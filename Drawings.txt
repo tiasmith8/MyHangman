@@ -58,7 +58,7 @@ Make you win and you lose ascii signature
 
 
 
-
+C:\Users\Tia Smith\source\repos\MyHangman\6letterwords.txt
 
 Custom colors
 Tools => NuGet Package Manager => Package Manager Console menu

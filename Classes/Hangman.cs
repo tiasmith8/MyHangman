@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.IO;
 
 namespace MyHangman.Classes
 {
@@ -25,7 +26,7 @@ namespace MyHangman.Classes
         /// </summary>
         public int RemainingAttempts { get; private set; }
 
-        //Create a dictionary to hold the words (length 6)
+        //Created a string array to hold the words (length 6)
         /// <summary>
         /// Contains the dictionary of words to guess.
         /// </summary>
@@ -41,14 +42,22 @@ namespace MyHangman.Classes
         /// <summary>
         /// Contains the word the user is trying to guess.
         /// </summary>
-        public string pickedWord{get;}
+        public string PickedWord{get;}
 
-        public char[] guessedCharacters { get; private set; } = { '*', '*', '*', '*', '*', '*' };
+        /// <summary>
+        /// Holds correctly guessed characters
+        /// </summary>
+        public char[] GuessedCharacters { get; private set; } = { '*', '*', '*', '*', '*', '*' };
 
         /// <summary>
         /// Holds incorrect guesses.
         /// </summary>
-        public List<char> incorrectLetters = new List<char>();
+        private List<char> incorrectLetters = new List<char>();
+
+        /// <summary>
+        /// Holds words read in from file
+        /// </summary>
+        private List<string> sixLetterWordsFromFile = new List<string>();
 
         /// <summary>
         /// Method to print the incorrect letters
@@ -64,9 +73,7 @@ namespace MyHangman.Classes
             }
             Console.WriteLine();
             Console.ResetColor();
-
         }
-
 
         /// <summary>
         /// Print out the game board
@@ -91,12 +98,12 @@ namespace MyHangman.Classes
         {
             bool doesContainLetter = false; //assume false first
             //returns -1 if index not there, otherwise returns the first index of the letter
-            int indexAtGuess = pickedWord.IndexOf(letterGuessed);
+            int indexAtGuess = PickedWord.IndexOf(letterGuessed);
 
             //If the letter was found in the word to guess
             if (indexAtGuess != -1)
             {   //Change the * to the letter guess correctly
-                this.guessedCharacters[indexAtGuess] = char.Parse(letterGuessed);
+                this.GuessedCharacters[indexAtGuess] = char.Parse(letterGuessed);
                 doesContainLetter = !doesContainLetter; //Flag for letter found updated to true
             }
 
@@ -125,8 +132,7 @@ namespace MyHangman.Classes
                         break;
                 }
 
-                //**Add logic here to check if the letter is there again
-                //Here check to see if the letter exists another time
+                //Run method checking for 2nd letter
                 CheckForAnotherLetter(letterGuessed, indexAtGuess);
 
                 //Print the board
@@ -138,8 +144,8 @@ namespace MyHangman.Classes
                 PrintIncorrectLetters();
                 Console.ResetColor();
 
-                string strGuessed = new string(this.guessedCharacters);
-                string strPicked = this.pickedWord;
+                string strGuessed = new string(this.GuessedCharacters);
+                string strPicked = this.PickedWord;
 
                 //If its the last guess remaining
                 if (strGuessed.Equals(strPicked))
@@ -157,7 +163,6 @@ namespace MyHangman.Classes
              * If index 5   spaces 27, 28
             */
 
-
             //Did not guess correctly
             else
             {
@@ -170,16 +175,21 @@ namespace MyHangman.Classes
             return doesContainLetter;
         }
 
+        /// <summary>
+        /// Checks for second letter
+        /// </summary>
+        /// <param name="letterGuessed"></param>
+        /// <param name="firstIndex"></param>
         public void CheckForAnotherLetter(string letterGuessed, int firstIndex)
         {
             bool doesContainLetter = false; //assume false first
             //returns -1 if index not there, otherwise returns the first index of the letter
-            int indexAtGuess = pickedWord.IndexOf(letterGuessed, ++firstIndex);
+            int indexAtGuess = PickedWord.IndexOf(letterGuessed, ++firstIndex);
 
             //If the letter was found in the word to guess
             if (indexAtGuess != -1)
             {   //Change the * to the letter guess correctly
-                this.guessedCharacters[indexAtGuess] = char.Parse(letterGuessed);
+                this.GuessedCharacters[indexAtGuess] = char.Parse(letterGuessed);
                 doesContainLetter = !doesContainLetter; //Flag for letter found updated to true
             }
 
@@ -210,7 +220,6 @@ namespace MyHangman.Classes
                 //Call again to check for another letter
                 CheckForAnotherLetter(letterGuessed, indexAtGuess);
             }
-
         }
 
 
@@ -263,7 +272,8 @@ namespace MyHangman.Classes
                 Console.ResetColor();
                 if (char.Parse(Console.ReadLine().ToLower()).Equals('y'))
                 {
-                    Console.WriteLine($"Word to guess: {this.pickedWord}");
+                    //**Change this to print an unguessed letter instead of the entire word
+                    Console.WriteLine($"Word to guess: {this.PickedWord}");
                 }
             }
         }
@@ -302,9 +312,49 @@ namespace MyHangman.Classes
 
             //Get the word to guess
             Random rndNumber = new Random();
-            int randomSeedValue = rndNumber.Next(0, SixLetterDictionaryWords.Length - 1);
-            this.pickedWord = SixLetterDictionaryWords[randomSeedValue];
 
+            //Open 6 letter file and read in 6letter words
+            try
+            {   //Create new streamreader object
+                using (StreamReader sr = new StreamReader("6letterwords.txt"))
+                {   //Read in entire file line-by-line
+                    while (!sr.EndOfStream)
+                    {
+                        string line = sr.ReadLine();
+                        //put words into array based on pipe delimiter
+                        string[] wordsArray = line.Split('|');
+
+                        //Add array of words from the read in line to list
+                        foreach(string word in wordsArray)
+                        {
+                            //Add the word to the list holding words
+                            sixLetterWordsFromFile.Add(word);
+                        }
+
+                        if (line.Equals(""))
+                        {
+                            break;
+                        }
+                    }
+                }   
+            }
+
+            //If there's an issue opening the input file, write message to console
+            catch (IOException iox)
+            {
+                Console.WriteLine("Error opening the words file.");
+                Console.WriteLine(iox.Message);
+            }
+
+            //**Changed from finite dictionary to file
+            //This logic uses a finite array defined above as SixLetterDictionaryWords
+            //int randomSeedValue = rndNumber.Next(0, SixLetterDictionaryWords.Length - 1);
+            //this.pickedWord = SixLetterDictionaryWords[randomSeedValue];
+
+            //sixLetterWordsFromFile
+            int randomSeedValue = rndNumber.Next(0, sixLetterWordsFromFile.Count);
+            this.PickedWord = sixLetterWordsFromFile[randomSeedValue];
+            sixLetterWordsFromFile.RemoveAt(randomSeedValue);
         }
 
         public void PrintLogoSmall()

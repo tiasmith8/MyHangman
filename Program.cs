@@ -38,9 +38,9 @@ namespace MyHangman
                     //pass in string with guessed character
                     gameBoard.ContainsLetter(letterGuessed);
 
-                    if (gameBoard.guessedCharacters.Equals(gameBoard.pickedWord))
+                    if (gameBoard.GuessedCharacters.Equals(gameBoard.PickedWord))
                     {
-                        Console.WriteLine($"guessed word: {gameBoard.guessedCharacters.ToString()}");
+                        Console.WriteLine($"guessed word: {gameBoard.GuessedCharacters.ToString()}");
                         gameBoard.PrintOutBoard();
 
                         break;
