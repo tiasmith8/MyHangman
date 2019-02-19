@@ -45,7 +45,7 @@ Add logic for multiple letters in a word to guess - complete
 catch null exception entered
 Refactor the code (rename variables, elimate duplicate code)
 
-Fill in both characters if it's the same
+Fill in both characters if it's the same - complete
 Tell the word at the end if you don't get it
 Make the clue more obvious that it's the clue
 

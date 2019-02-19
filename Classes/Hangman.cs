@@ -147,6 +147,9 @@ namespace MyHangman.Classes
                 string strGuessed = new string(this.GuessedCharacters);
                 string strPicked = this.PickedWord;
 
+                //This will print the entire word:
+                Console.WriteLine($"Word to guess: {this.PickedWord}");
+
                 //If its the last guess remaining
                 if (strGuessed.Equals(strPicked))
                 {
@@ -266,17 +269,14 @@ namespace MyHangman.Classes
                 Console.WriteLine($"The correct word was: {this.PickedWord}");
 
             }
-            else if(this.RemainingAttempts == 1)
+            else if(this.RemainingAttempts < 3)
             {
                 Console.ForegroundColor = ConsoleColor.DarkGreen;
                 Console.Write("Would you like a hint? (y/n) ");
                 Console.ResetColor();
+                //User wants a hint
                 if (char.Parse(Console.ReadLine().ToLower()).Equals('y'))
                 {
-                    //**Change this to print an unguessed letter instead of the entire word
-                    //This will print the entire word:
-                    Console.WriteLine($"Word to guess: {this.PickedWord}");
-
                     //Look in this.GuessedCharacters for the 1st occurrence of *
                     int clueIndex = FindIndexForClue();
                     //Get that index and pull from PickedWord[1st index]
@@ -295,7 +295,7 @@ namespace MyHangman.Classes
         public int FindIndexForClue()
         {
             int clueIndex;
-            for(int i = 0; i<GuessedCharacters.Length-1; i++)
+            for(int i = 0; i<=GuessedCharacters.Length-1; i++)
             {
                 if(GuessedCharacters[i].Equals('*'))
                 {
