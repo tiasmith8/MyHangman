@@ -148,7 +148,7 @@ namespace MyHangman.Classes
                 string strPicked = this.PickedWord;
 
                 //This will print the entire word:
-                Console.WriteLine($"Word to guess: {this.PickedWord}");
+                //Console.WriteLine($"Word to guess: {this.PickedWord}");
 
                 //If its the last guess remaining
                 if (strGuessed.Equals(strPicked))
