@@ -21,7 +21,7 @@ CREATE TABLE players (
 	player_id integer identity NOT NULL, --System generated number
 	first_name varchar(30) NOT NULL, --Player enters first name
 	last_name varchar(30) NOT NULL, --Player enters last name
-	username varchar(100) UNIQUE NOT NULL, --Player chooses a unique username
+	username varchar(30) UNIQUE NOT NULL, --Player chooses a unique username
 	[password] varchar(10) NOT NULL, --Player chooses a password
 
 	CONSTRAINT pk_player_id PRIMARY KEY (player_id)

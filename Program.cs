@@ -1,5 +1,6 @@
 ﻿using System;
 using MyHangman.Classes;
+using MyHangman.DAL;
 
 namespace MyHangman
 {
@@ -7,6 +8,15 @@ namespace MyHangman
     {
         static void Main(string[] args)
         {
+            //Create database connection to pull in players saved to db
+            IPlayerDAO playerDAO = new PlayerSqlDAO(@"Server=.\SQLEXPRESS;Database=HangmanPlayers;Trusted_Connection=True;");
+
+            //Create new menu object for entering players menu
+            PlayersCLI cli = new PlayersCLI(playerDAO);
+            //Run the 1st CLI to get the player
+            cli.RunCLI();
+
+
             //Console.ForegroundColor = ConsoleColor.DarkBlue;
             Console.WriteLine("Welcome to Hangman!\n");
             Console.Write("Would you like to play a round? (y/n) ");
@@ -65,9 +75,11 @@ namespace MyHangman
 
 //TODO
 /*
+ * Finish implementing the interface for PlayerSqlDAO
+ * Add a scoreboard on the side
  * Add logic for easy (4 letter words), medium(5 letter words), hard (6 letter words) - put into classes
  * Add a scoring mechanism to deduct for hints and increase for correct guesses, decrease for incorrect guesses
- * Keep a database with the users to keep track for score board
+ * Add functionality to use database user for the game
  * Refactor code - menu, game boards for easy/medium/hard
  * Add logic for putting the correct letter twice: You already chose that letter
  * Catch null exceptions for bad letters entered
