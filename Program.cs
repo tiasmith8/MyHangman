@@ -15,7 +15,7 @@ namespace MyHangman
             
             while (playGame.ToLower().Equals("y"))
             {
-                //Create a new game board object
+                //Create a new game board object and track rounds played.
                 Hangman gameBoard = new Hangman(++numberOfRoundsPlayed);
 
                 //Print initial gameboard to screen

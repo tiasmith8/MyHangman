@@ -332,7 +332,6 @@ namespace MyHangman.Classes
             return -1;
         }
 
-
         /// <summary>
         /// Play another round.
         /// </summary>
@@ -396,15 +395,15 @@ namespace MyHangman.Classes
                 Console.WriteLine(iox.Message);
             }
 
-            //**Changed from finite dictionary to file
-            //This logic uses a finite array defined above as SixLetterDictionaryWords
+            //**Changed from hard-coded string array to file
+            //This logic used an array defined above as SixLetterDictionaryWords
             //int randomSeedValue = rndNumber.Next(0, SixLetterDictionaryWords.Length - 1);
             //this.pickedWord = SixLetterDictionaryWords[randomSeedValue];
 
             //sixLetterWordsFromFile
             int randomSeedValue = rndNumber.Next(0, sixLetterWordsFromFile.Count);
-            this.PickedWord = sixLetterWordsFromFile[randomSeedValue];
-            sixLetterWordsFromFile.RemoveAt(randomSeedValue);
+            this.PickedWord = sixLetterWordsFromFile[randomSeedValue];//Pick random word from List of words read in from file
+            sixLetterWordsFromFile.RemoveAt(randomSeedValue); //Remove word from game if picked
         }
 
         public void PrintLogoSmall()
