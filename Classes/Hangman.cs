@@ -169,13 +169,39 @@ namespace MyHangman.Classes
             //Did not guess correctly
             else
             {
-                this.RemainingAttempts--;
-                incorrectLetters.Add(char.Parse(letterGuessed));
-                IncorrectGuess();
-                
+                //If the letter was already guess incorrectly
+                if(incorrectLetters.Contains(char.Parse(letterGuessed)))
+                {
+                    //Reprint board and tell user they already guessed that
+                    AlreadyGuessedLetter();
+                }
+
+                //New incorrect guessed letter
+                else
+                {
+                    this.RemainingAttempts--;
+                    incorrectLetters.Add(char.Parse(letterGuessed));
+                    IncorrectGuess();
+                }  
             }
 
             return doesContainLetter;
+        }
+
+        /// <summary>
+        /// Board that's printed when user guessed an incorrect letter they already guessed.
+        /// </summary>
+        private void AlreadyGuessedLetter()
+        {
+            PrintOutBoard();
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine($"You already incorrectly guessed that letter. Try a different letter.");
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            Console.WriteLine($"Remaining incorrect guesses: {RemainingAttempts}");
+            //Print incorrect letters
+            PrintIncorrectLetters();
+
+            Console.ForegroundColor = ConsoleColor.DarkGray;
         }
 
         /// <summary>
