@@ -75,6 +75,15 @@ namespace MyHangman
 
 //TODO
 /*
+ * Create a Leaderboard database table: Playerid, playerscore
+ * Add user score and display in leaderboard
+ * Change list all players to ViewLeaderboard menu item
+ * Create top menu for Login/Register
+ *  -> Create Register flow to Add new user
+ *  Top menu: Add moving ascii art and choose between 2 choices: 1-Login 2-Register
+ *          If Register
+ *          If Login
+ * Get padding to display correctly in columns
  * Finish implementing the interface for PlayerSqlDAO
  * Add a scoreboard on the side
  * Add logic for easy (4 letter words), medium(5 letter words), hard (6 letter words) - put into classes
