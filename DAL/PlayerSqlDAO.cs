@@ -110,11 +110,49 @@ namespace MyHangman.DAL
 
         }
 
+        /// <summary>
+        /// Return player object given the Username
+        /// </summary>
+        /// <param name="username"></param>
+        /// <returns></returns>
         public IList<Player> GetPlayerByUsername(string username)
         {
-            throw new NotImplementedException();
-        }
+            //List of player(s) to return matching the search criteria
+            IList<Player> players = new List<Player>();
 
-        
+            //Open a connection to the database
+            try
+            {   //pass in the connection string to a new connection object
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    //Open the connection
+                    conn.Open();
+
+                    //Query to send
+                    string sql = "SELECT * FROM players WHERE username = @USERNAME;";
+
+                    //Create a command to query for the users
+                    SqlCommand cmd = new SqlCommand(sql, conn);
+                    cmd.Parameters.AddWithValue("@USERNAME", username);
+                    //Execute the command. Since reading in data, get SqlDataReader back
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    //Should only return one row since username column is unique
+                    if (reader.Read())
+                    {
+                        Player player = ConvertReaderToPlayer(reader);
+                        players.Add(player);
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine("Issue with connecting to the database");
+                Console.WriteLine(ex.Message);
+                throw;
+            }
+
+            return players;
+        } 
     }
 }

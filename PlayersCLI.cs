@@ -69,9 +69,17 @@ namespace MyHangman
             throw new NotImplementedException();
         }
 
+        //Print player info for Username
         private void GetPlayerByUsername()
         {
-            throw new NotImplementedException();
+            Console.Write("Enter your Username: ");
+            string usernameInput = Console.ReadLine();
+
+            IList<Player> returnedPlayer = playerDAO.GetPlayerByUsername(usernameInput);
+            Console.WriteLine($"Player Info: ");
+            Console.WriteLine("Player#\t\tUsername\t\t FirstName\t\tLastName");
+            Console.WriteLine($"{returnedPlayer[0].ToString()}");
+            Console.ReadLine();
         }
 
         private void GetAllPlayers()
