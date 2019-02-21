@@ -78,8 +78,9 @@ namespace MyHangman
  * Create a Leaderboard database table: Playerid, playerscore
  * Add user score and display in leaderboard
  * Change list all players to ViewLeaderboard menu item
- * Create top menu for Login/Register
+ * Create top menu for Login/Register/Continue as Guest
  *  -> Create Register flow to Add new user
+ *  -> Continue as guest displays leaderboard after selection
  *  Top menu: Add moving ascii art and choose between 2 choices: 1-Login 2-Register
  *          If Register
  *          If Login
