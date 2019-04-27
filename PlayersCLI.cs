@@ -72,13 +72,23 @@ namespace MyHangman
         //Print player info for Username
         private void GetPlayerByUsername()
         {
-            Console.Write("Enter your Username: ");
+            Console.Write("Search for player by Username: ");
             string usernameInput = Console.ReadLine();
 
             IList<Player> returnedPlayer = playerDAO.GetPlayerByUsername(usernameInput);
-            Console.WriteLine($"Player Info: ");
-            Console.WriteLine("Player#\t\tUsername\t\t FirstName\t\tLastName");
-            Console.WriteLine($"{returnedPlayer[0].ToString()}");
+
+            if(returnedPlayer.Count ==0)
+            {
+                Console.WriteLine("No players found.");
+
+            }
+            else
+            {
+                Console.WriteLine($"Player Info: ");
+                Console.WriteLine("Player#\t\tUsername\t\t FirstName\t\tLastName");
+                Console.WriteLine($"{returnedPlayer[0].ToString()}");
+            }
+
             Console.ReadLine();
         }
 
@@ -103,7 +113,7 @@ namespace MyHangman
             Console.WriteLine("Main-Menu Type in a command");
             Console.WriteLine(" 1 - See list of all players");
             Console.WriteLine(" 2 - Add Player");
-            Console.WriteLine(" 3 - Enter your Username");
+            Console.WriteLine(" 3 - Search for player by Username");
             Console.WriteLine(" 4 - See Leaderboard");
             Console.WriteLine(" 5 - Begin Game");
             Console.Write("Choose an option: " );
