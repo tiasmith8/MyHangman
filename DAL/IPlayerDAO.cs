@@ -26,5 +26,12 @@ namespace MyHangman.DAL
         /// </summary>
         /// <returns></returns>
         IList<Player> GetAllUsers();
+
+        /// <summary>
+        /// Returns the top 5 players.
+        /// </summary>
+        /// <returns></returns>
+        IList<Player> GetLeaderboard();
+
     }
 }

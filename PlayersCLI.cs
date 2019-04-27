@@ -66,7 +66,19 @@ namespace MyHangman
         //Yet to implement functionality for keeping score
         private void GetLeaderboard()
         {
-            throw new NotImplementedException();
+            // Connect to the database
+
+            //Pull top 5 players arranged by score
+            IList<Player> top5Players = playerDAO.GetLeaderboard();
+
+            // Header
+            Console.WriteLine("Player#\t\tUsername\t\t Score");
+
+            foreach (Player p in top5Players)
+            {
+                Console.WriteLine($"{p.TopPlayers()}");
+            }
+            Console.ReadLine();
         }
 
         //Print player info for Username

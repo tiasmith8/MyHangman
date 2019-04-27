@@ -77,6 +77,18 @@ namespace MyHangman.DAL
             return player;
         }
 
+        private Player ConvertReaderToTopPlayer(SqlDataReader reader)
+        {
+            Player player = new Player();
+            player.PlayerId = Convert.ToInt32(reader["player_id"]);
+            player.Username = Convert.ToString(reader["username"]);
+            player.Score = Convert.ToInt32(reader["score"]);
+
+            return player;
+        }
+
+
+
         public bool AddUser(Player player)
         {
             //Open db connection
@@ -108,6 +120,49 @@ namespace MyHangman.DAL
             }
 
 
+        }
+
+        /// <summary>
+        /// Return the top 5 players in order.
+        /// </summary>
+        /// <returns></returns>
+        public IList<Player> GetLeaderboard()
+        {
+            IList<Player> top5Players = new List<Player>();
+
+            // Open connection to DB
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    // Open the connection
+                    conn.Open();
+
+                    // Query to send
+                    string sql = "SELECT TOP 5 * FROM players ORDER BY score DESC;";
+
+                    //Create a command to query for the users
+                    SqlCommand cmd = new SqlCommand(sql, conn);
+                    //Execute the command. Since reading in data, get SqlDataReader back
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    //Read in the rows returned
+                    while (reader.Read())
+                    {
+                        Player player = ConvertReaderToTopPlayer(reader);
+                        top5Players.Add(player);
+                    }
+                }
+
+            }
+            catch(SqlException ex)
+            {
+                Console.WriteLine("Issue with connecting to the database");
+                Console.WriteLine(ex.Message);
+                throw;
+            }
+
+            return top5Players;
         }
 
         /// <summary>
