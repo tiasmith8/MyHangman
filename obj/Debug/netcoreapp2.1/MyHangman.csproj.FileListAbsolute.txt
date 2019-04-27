@@ -9,3 +9,14 @@ C:\Users\Tia Smith\source\repos\MyHangman\obj\Debug\netcoreapp2.1\MyHangman.Asse
 C:\Users\Tia Smith\source\repos\MyHangman\obj\Debug\netcoreapp2.1\MyHangman.AssemblyInfo.cs
 C:\Users\Tia Smith\source\repos\MyHangman\obj\Debug\netcoreapp2.1\MyHangman.dll
 C:\Users\Tia Smith\source\repos\MyHangman\obj\Debug\netcoreapp2.1\MyHangman.pdb
+C:\Users\Zen\repos\MyHangman\bin\Debug\netcoreapp2.1\MyHangman.deps.json
+C:\Users\Zen\repos\MyHangman\bin\Debug\netcoreapp2.1\MyHangman.runtimeconfig.json
+C:\Users\Zen\repos\MyHangman\bin\Debug\netcoreapp2.1\MyHangman.runtimeconfig.dev.json
+C:\Users\Zen\repos\MyHangman\bin\Debug\netcoreapp2.1\MyHangman.dll
+C:\Users\Zen\repos\MyHangman\bin\Debug\netcoreapp2.1\MyHangman.pdb
+C:\Users\Zen\repos\MyHangman\obj\Debug\netcoreapp2.1\MyHangman.csprojAssemblyReference.cache
+C:\Users\Zen\repos\MyHangman\obj\Debug\netcoreapp2.1\MyHangman.csproj.CoreCompileInputs.cache
+C:\Users\Zen\repos\MyHangman\obj\Debug\netcoreapp2.1\MyHangman.AssemblyInfoInputs.cache
+C:\Users\Zen\repos\MyHangman\obj\Debug\netcoreapp2.1\MyHangman.AssemblyInfo.cs
+C:\Users\Zen\repos\MyHangman\obj\Debug\netcoreapp2.1\MyHangman.dll
+C:\Users\Zen\repos\MyHangman\obj\Debug\netcoreapp2.1\MyHangman.pdb

@@ -25,7 +25,7 @@ CREATE TABLE players (
 	score int DEFAULT 0 not null, -- Player's score
 	username varchar(30) UNIQUE NOT NULL, -- Player chooses a unique username
 	[password] varchar(10) NOT NULL, -- Player chooses a password (plain text)
-	salt VARCHAR(256) NOT NULL -- Password Salt
+	--salt VARCHAR(256) NOT NULL -- Password Salt
 
 	CONSTRAINT pk_player_id PRIMARY KEY (player_id)
 );
@@ -34,7 +34,7 @@ CREATE TABLE players (
 SET IDENTITY_INSERT players ON;
 
 -- Set initial player
-INSERT INTO players (player_id, first_name, last_name, username, password)
+INSERT INTO players (player_id, first_name, last_name, score, username, password)
 VALUES(1, 'Player', 'One', 0, 'ReadyPlayerOne', 'player');
 
 SET IDENTITY_INSERT players OFF;
