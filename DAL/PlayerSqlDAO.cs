@@ -90,7 +90,7 @@ namespace MyHangman.DAL
 
                     //Insert new data into the database
                     SqlCommand cmd = new SqlCommand("INSERT INTO players " +
-                        "VALUES(@first_name, @last_name, @username, @password)", conn);
+                        "VALUES(@first_name, @last_name, 0, @username, @password)", conn);
                     cmd.Parameters.AddWithValue("@first_name", player.FirstName);
                     cmd.Parameters.AddWithValue("@last_name", player.LastName);
                     cmd.Parameters.AddWithValue("@username", player.Username);
