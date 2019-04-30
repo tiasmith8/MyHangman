@@ -8,7 +8,7 @@ namespace MyHangman
 {
     public class PlayersCLI
     {
-        const string Command_GetAllPlayers = "1";
+        const string Command_GetAllPlayers = "1"; 
         const string Command_AddNewPlayer = "2";
         const string Command_GetPlayerByUsername = "3";
         const string Command_GetLeaderboard = "4";
