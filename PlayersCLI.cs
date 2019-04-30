@@ -10,7 +10,7 @@ namespace MyHangman
     {
         const string Command_GetAllPlayers = "1"; 
         const string Command_AddNewPlayer = "2"; 
-        const string Command_GetPlayerByUsername = "3";
+        const string Command_GetPlayerByUsername = "3"; 
         const string Command_GetLeaderboard = "4";
         const string Command_StartGame = "5";
         const string Command_Quit = "q";
