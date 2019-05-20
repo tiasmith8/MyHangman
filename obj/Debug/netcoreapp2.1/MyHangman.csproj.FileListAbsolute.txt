@@ -25,7 +25,9 @@ C:\Users\tsmith\repos\MyHangman\bin\Debug\netcoreapp2.1\MyHangman.runtimeconfig.
 C:\Users\tsmith\repos\MyHangman\bin\Debug\netcoreapp2.1\MyHangman.runtimeconfig.dev.json
 C:\Users\tsmith\repos\MyHangman\bin\Debug\netcoreapp2.1\MyHangman.dll
 C:\Users\tsmith\repos\MyHangman\bin\Debug\netcoreapp2.1\MyHangman.pdb
-C:\Users\tsmith\repos\MyHangman\obj\Debug\netcoreapp2.1\MyHangman.csprojResolveAssemblyReference.cache
 C:\Users\tsmith\repos\MyHangman\obj\Debug\netcoreapp2.1\MyHangman.AssemblyInfo.cs
 C:\Users\tsmith\repos\MyHangman\obj\Debug\netcoreapp2.1\MyHangman.dll
 C:\Users\tsmith\repos\MyHangman\obj\Debug\netcoreapp2.1\MyHangman.pdb
+C:\Users\tsmith\repos\MyHangman\obj\Debug\netcoreapp2.1\MyHangman.csprojAssemblyReference.cache
+C:\Users\tsmith\repos\MyHangman\obj\Debug\netcoreapp2.1\MyHangman.csproj.CoreCompileInputs.cache
+C:\Users\tsmith\repos\MyHangman\obj\Debug\netcoreapp2.1\MyHangman.AssemblyInfoInputs.cache

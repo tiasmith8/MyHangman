@@ -110,7 +110,9 @@ namespace MyHangman
 
             Console.WriteLine();
             Console.WriteLine("---- Players ----");
-            Console.WriteLine("Player#\t\tUsername\t\t FirstName\t\tLastName");
+            // Align columns {col#, left-align-9 spaces} which are based off of the database column lengths
+            Console.WriteLine("{0,-9}{1,-30}{2,-30}{3,-30}",
+                "Player#", "Username","FirstName","LastName");
 
             for (int index = 0; index < players.Count; index++)
             {

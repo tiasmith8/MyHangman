@@ -9,7 +9,11 @@ namespace MyHangman
         static void Main(string[] args)
         {
             //Create database connection to pull in players saved to db
-            IPlayerDAO playerDAO = new PlayerSqlDAO(@"Server=.\SQLEXPRESS;Database=HangmanPlayers;Trusted_Connection=True;");
+            // IPlayerDAO playerDAO = new PlayerSqlDAO(@"Server=.\SQLEXPRESS;Database=HangmanPlayers;Trusted_Connection=True;");
+            // DEV-TSMITH, ONOSYSHQ\tsmith
+            // Data Source=(local);Initial Catalog=Marys;Trusted_Connection=yes"
+            IPlayerDAO playerDAO = new PlayerSqlDAO(@"Data Source=(local);Initial Catalog=HangmanPlayers;Trusted_Connection=yes");
+
 
             //Create new menu object for entering players menu
             PlayersCLI cli = new PlayersCLI(playerDAO);
