@@ -170,14 +170,10 @@ namespace MyHangman.Classes
             //Did not guess correctly
             else
             {   
-                if(letterGuessed.Any(x => char.IsDigit(x)))
+                // Check for correct format (single letter only)
+                if(!letterGuessed.Any(x => char.IsLetter(x)) || letterGuessed.Length != 1)
                 {
-                    Console.WriteLine("Cannot enter a number. Enter only a single character.");
-                }
-                // Too many letters entered at one time
-                else if(letterGuessed.Length>1)
-                {
-                    Console.WriteLine("Too many characters were entered. Enter ONE letter at a time.");
+                    Console.WriteLine("Enter only a single letter");
                 }
                 //If the letter was already guess incorrectly
                 else if(incorrectLetters.Contains(char.Parse(letterGuessed)))
