@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.IO;
+using System.Linq;
 
 namespace MyHangman.Classes
 {
@@ -168,9 +169,18 @@ namespace MyHangman.Classes
 
             //Did not guess correctly
             else
-            {
+            {   
+                if(letterGuessed.Any(x => char.IsDigit(x)))
+                {
+                    Console.WriteLine("Cannot enter a number. Enter only a single character.");
+                }
+                // Too many letters entered at one time
+                else if(letterGuessed.Length>1)
+                {
+                    Console.WriteLine("Too many characters were entered. Enter ONE letter at a time.");
+                }
                 //If the letter was already guess incorrectly
-                if(incorrectLetters.Contains(char.Parse(letterGuessed)))
+                else if(incorrectLetters.Contains(char.Parse(letterGuessed)))
                 {
                     //Reprint board and tell user they already guessed that
                     AlreadyGuessedLetter();
